@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: true
 
       - name: Find Prime Hide ZIP
         id: zip
@@ -29,7 +30,7 @@ jobs:
             exit 1
           fi
 
-          echo "ZIP found: $ZIP_FILE"
+          echo "Found ZIP: $ZIP_FILE"
           echo "ZIP_FILE=$ZIP_FILE" >> "$GITHUB_OUTPUT"
 
       - name: Extract ZIP
@@ -42,11 +43,9 @@ jobs:
           rm -rf _prime_extract
           mkdir -p _prime_extract
 
-          echo "Extracting: $ZIP_FILE"
-
           unzip -q "$ZIP_FILE" -d _prime_extract
 
-          echo "=== EXTRACTED CONTENT ==="
+          echo "=== EXTRACTED FILES ==="
           find _prime_extract -maxdepth 3 -type f | sort
 
       - name: Detect project root
@@ -55,24 +54,20 @@ jobs:
         run: |
           set -e
 
-          PROJECT_ROOT=""
-
           if [ -f "_prime_extract/package.json" ]; then
             PROJECT_ROOT="_prime_extract"
           else
-            FOUND=$(find _prime_extract -mindepth 1 -maxdepth 2 -type f -name "package.json" -print -quit)
+            PACKAGE_JSON=$(find _prime_extract -mindepth 1 -maxdepth 3 -type f -name "package.json" | head -n 1)
 
-            if [ -n "$FOUND" ]; then
-              PROJECT_ROOT=$(dirname "$FOUND")
+            if [ -z "$PACKAGE_JSON" ]; then
+              echo "ERROR: package.json not found."
+              exit 1
             fi
+
+            PROJECT_ROOT=$(dirname "$PACKAGE_JSON")
           fi
 
-          if [ -z "$PROJECT_ROOT" ]; then
-            echo "ERROR: package.json was not found inside the ZIP."
-            exit 1
-          fi
-
-          echo "Project root detected: $PROJECT_ROOT"
+          echo "Project root: $PROJECT_ROOT"
           echo "PROJECT_ROOT=$PROJECT_ROOT" >> "$GITHUB_OUTPUT"
 
       - name: Replace repository with React project
@@ -83,7 +78,7 @@ jobs:
           PROJECT_ROOT="${{ steps.project.outputs.PROJECT_ROOT }}"
           ZIP_FILE="${{ steps.zip.outputs.ZIP_FILE }}"
 
-          echo "Replacing repository contents..."
+          echo "Cleaning old project..."
 
           find . -mindepth 1 -maxdepth 1 \
             ! -name ".git" \
@@ -92,10 +87,22 @@ jobs:
             ! -name "$(basename "$ZIP_FILE")" \
             -exec rm -rf {} +
 
+          echo "Copying Prime Hide project..."
+
           cp -a "$PROJECT_ROOT"/. .
 
           rm -rf _prime_extract
           rm -f "$ZIP_FILE"
+
+      - name: Create gitignore
+        shell: bash
+        run: |
+          cat > .gitignore <<'EOF'
+          node_modules/
+          dist/
+          .DS_Store
+          *.log
+          EOF
 
       - name: Verify React project
         shell: bash
@@ -106,37 +113,45 @@ jobs:
           ls -la
 
           echo ""
-          echo "=== REQUIRED FILES ==="
+          echo "=== VERIFYING PROJECT ==="
 
           test -f package.json
           test -f index.html
           test -f vite.config.js
           test -d src
+          test -f src/main.jsx
+          test -f src/styles.css
 
-          echo "package.json ✓"
-          echo "index.html ✓"
-          echo "vite.config.js ✓"
-          echo "src/ ✓"
+          echo "package.json ........ OK"
+          echo "index.html .......... OK"
+          echo "vite.config.js ...... OK"
+          echo "src/ ................ OK"
+          echo "src/main.jsx ........ OK"
+          echo "src/styles.css ...... OK"
 
           echo ""
-          echo "=== SRC ==="
-          find src -maxdepth 3 -type f | sort
-
-          echo ""
-          echo "=== PUBLIC ==="
+          echo "=== PUBLIC ASSETS ==="
           find public -maxdepth 3 -type f | sort
 
       - name: Install dependencies
         shell: bash
         run: |
+          set -e
           npm install
 
       - name: Build React project
         shell: bash
         run: |
+          set -e
           npm run build
 
-      - name: Commit project
+      - name: Remove generated files
+        shell: bash
+        run: |
+          rm -rf node_modules
+          rm -rf dist
+
+      - name: Commit website only
         shell: bash
         run: |
           set -e
@@ -144,12 +159,25 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          echo "=== STAGING WEBSITE ==="
+
           git add -A
 
+          # Never try to modify the workflow that is currently running.
+          git reset -- .github/workflows/extract-zip.yml || true
+
+          echo ""
+          echo "=== STAGED FILES ==="
+          git diff --cached --name-only
+
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No website changes to commit."
             exit 0
           fi
 
-          git commit -m "Replace repo with Prime Hide React app"
-          git push
+          git commit -m "Deploy Prime Hide React website"
+
+          echo ""
+          echo "Pushing website..."
+
+          git push origin HEAD:main

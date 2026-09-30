@@ -1,103 +1,13 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#160f0a" />
-  <meta name="description" content="The Prime Hide — leather goods and shoe care at EastGate Market, Shop G25, Harare." />
-  <title>The Prime Hide | Leather Essentials</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high" />
-  <style>
-    :root{--cream:#f4eadb;--gold:#d9a75d;--gold2:#f0c783;--white:#fff;--ink:#17100b;--muted:#e7d8c7;--line:rgba(255,255,255,.2);--glass:rgba(16,10,6,.48)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#120b07;color:var(--white);font-family:"DM Sans",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}
-    .site{overflow:hidden;background:#120b07}.section{position:relative;isolation:isolate;overflow:hidden}.section::before{content:"";position:absolute;inset:-3%;z-index:-3;background-position:center;background-size:cover;background-repeat:no-repeat;filter:blur(2.2px);transform:scale(1.04)}.section::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(8,5,3,.88),rgba(8,5,3,.52) 50%,rgba(8,5,3,.7));}
-    .container{width:min(1180px,92%);margin:auto}.eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2);font-weight:700}.serif{font-family:"Playfair Display",serif}
-    .nav{position:absolute;top:0;left:0;right:0;z-index:20;height:86px;border-bottom:1px solid rgba(255,255,255,.13);background:linear-gradient(180deg,rgba(0,0,0,.48),transparent);backdrop-filter:blur(4px)}.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;flex-direction:column;line-height:.9}.brand strong{font-size:21px;letter-spacing:.18em}.brand small{font-size:7px;letter-spacing:.38em;color:#d7b27b;margin-top:8px}.nav-links{display:flex;align-items:center;gap:28px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:600}.nav-links a{opacity:.86}.nav-links a:hover{opacity:1;color:var(--gold2)}.nav-cta{border:1px solid rgba(240,199,131,.75);padding:12px 16px;display:flex;gap:9px;align-items:center;background:rgba(12,8,5,.3)}.socials{display:flex;gap:12px}.socials a{width:27px;height:27px;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;font-size:11px;border-radius:50%}.menu{display:none;border:1px solid var(--line);background:rgba(0,0,0,.3);color:#fff;width:42px;height:42px;border-radius:50%}
-    .hero{min-height:820px;display:flex;align-items:center;padding:140px 0 80px}.hero::before{background-image:url('assets/hero.webp');filter:blur(3px);}.hero::after{background:linear-gradient(90deg,rgba(5,3,2,.9) 0%,rgba(5,3,2,.64) 38%,rgba(5,3,2,.16) 72%,rgba(5,3,2,.45) 100%),linear-gradient(0deg,rgba(5,3,2,.6),transparent 40%)}.hero-copy{max-width:680px}.hero h1{font-family:"Playfair Display",serif;font-size:clamp(54px,7.4vw,104px);line-height:.88;letter-spacing:-.045em;margin:22px 0 24px}.hero h1 em{font-style:italic;color:var(--gold2);font-weight:500}.hero p{max-width:520px;color:#eee2d4;font-size:17px;line-height:1.7;margin:0}.hero-location{margin-top:17px;color:#d8c5b1;font-size:12px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 19px;border:1px solid rgba(255,255,255,.45);font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;transition:.2s;background:rgba(0,0,0,.18);backdrop-filter:blur(7px)}.btn.primary{background:rgba(217,167,93,.92);border-color:var(--gold2);color:#211208}.btn:hover{transform:translateY(-2px);border-color:#fff}.hero-proof{display:flex;gap:0;margin-top:54px;max-width:850px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.proof{padding:17px 27px 17px 0;margin-right:27px;border-right:1px solid var(--line);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#f0e4d5}.proof:last-child{border:0}.proof b{display:block;color:#fff;margin-bottom:5px}.proof span{color:#cdbca8}
-    .collection{padding:105px 0}.collection::before{background-image:url('assets/belt-brown.webp');filter:blur(9px);opacity:.8}.collection::after{background:linear-gradient(90deg,rgba(12,7,4,.92),rgba(12,7,4,.64),rgba(12,7,4,.86))}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:42px}.section-heading h2{font-size:clamp(44px,5vw,72px);line-height:.92;margin:12px 0 0}.section-heading p{max-width:390px;color:#d8c7b6;line-height:1.7;font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{position:relative;min-height:420px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:rgba(15,8,4,.22);backdrop-filter:blur(5px)}.card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,2,1,.9),transparent 60%)}.card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;filter:saturate(.94)}.card:hover img{transform:scale(1.05)}.card-content{position:absolute;left:22px;right:22px;bottom:20px;z-index:2}.card-content h3{font-family:"Playfair Display",serif;font-size:28px;margin:0 0 7px}.card-content p{font-size:11px;color:#d6c4b1;line-height:1.5;margin:0}.card-content a{display:inline-block;margin-top:15px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
-    .care{padding:120px 0}.care::before{background-image:url('assets/polish-dark-brown.webp');filter:blur(5px)}.care::after{background:linear-gradient(90deg,rgba(7,4,2,.91),rgba(7,4,2,.38) 52%,rgba(7,4,2,.8))}.care-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.care h2,.about h2,.visit h2,.contact h2{font-family:"Playfair Display",serif;font-size:clamp(46px,5vw,76px);line-height:.94;margin:14px 0 20px}.copy{color:#e1d1bf;line-height:1.75;font-size:14px;max-width:520px}.care-products{display:flex;gap:18px;align-items:end;justify-content:center}.care-product{width:42%;max-width:210px}.care-product img{width:100%;height:280px;object-fit:contain;filter:drop-shadow(0 20px 25px rgba(0,0,0,.4))}.care-list{display:grid;gap:11px;margin-top:28px}.care-list div{display:flex;gap:12px;align-items:center;padding:13px 15px;border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.2);backdrop-filter:blur(8px);font-size:11px;color:#e6d8ca}.tick{width:23px;height:23px;border:1px solid rgba(240,199,131,.6);display:grid;place-items:center;color:var(--gold2);flex:none}
-    .about{padding:115px 0}.about::before{background-image:url('assets/wallet-black-2.webp');filter:blur(7px)}.about::after{background:linear-gradient(90deg,rgba(6,3,2,.9),rgba(6,3,2,.58),rgba(6,3,2,.84))}.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stat{min-height:150px;border:1px solid rgba(255,255,255,.15);background:rgba(12,7,4,.4);backdrop-filter:blur(9px);padding:22px}.stat strong{font-family:"Playfair Display",serif;font-size:28px;color:var(--gold2);display:block;margin-bottom:8px}.stat span{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:#e1d2c2;line-height:1.5}
-    .visit{padding:110px 0}.visit::before{background-image:url('assets/belt-grey.webp');filter:blur(8px)}.visit::after{background:linear-gradient(90deg,rgba(5,3,2,.92),rgba(5,3,2,.55),rgba(5,3,2,.82))}.visit-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:30px;align-items:stretch}.visit-card{padding:40px;border:1px solid rgba(255,255,255,.18);background:rgba(10,6,3,.45);backdrop-filter:blur(10px)}.detail{display:flex;gap:14px;margin:25px 0;color:#e4d6c7}.detail b{display:block;color:#fff;font-size:12px;margin-bottom:4px}.detail span{font-size:12px;color:#cdbdad;line-height:1.5}.store-image{min-height:450px;border:1px solid rgba(255,255,255,.18);background:url('assets/belt-black.webp') center/cover;position:relative;overflow:hidden}.store-image::after{content:"THE PRIME HIDE";position:absolute;inset:auto 20px 20px;font-family:"Playfair Display",serif;font-size:34px;color:#fff;text-shadow:0 2px 15px #000}
-    .contact{padding:100px 0}.contact::before{background-image:url('assets/leather-cleaner.webp');filter:blur(10px);transform:scale(1.15)}.contact::after{background:linear-gradient(90deg,rgba(6,3,2,.9),rgba(6,3,2,.52),rgba(6,3,2,.9))}.contact-inner{display:flex;align-items:end;justify-content:space-between;gap:50px}.contact h2{max-width:720px;margin-bottom:0}.contact-side{min-width:270px}.contact-side .socials{margin-top:22px}.contact-side p{font-size:11px;color:#d5c4b3;line-height:1.6}
-    footer{position:relative;padding:45px 0;border-top:1px solid rgba(255,255,255,.14);background-image:linear-gradient(rgba(7,4,2,.82),rgba(7,4,2,.9)),url('assets/belt-brown.webp');background-size:cover;background-position:center}.footer-inner{display:flex;justify-content:space-between;gap:30px;align-items:center}.footer-note{font-size:10px;color:#cbbbaa}.footer-brand strong{display:block;font-size:17px;letter-spacing:.16em}.footer-brand span{font-size:7px;letter-spacing:.34em;color:var(--gold2)}
-    .wa-float{position:fixed;right:22px;bottom:22px;z-index:50;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#1fbf63;color:#fff;box-shadow:0 12px 35px rgba(0,0,0,.35);font-weight:700;border:2px solid rgba(255,255,255,.55);transition:.2s}.wa-float:hover{transform:translateY(-4px) scale(1.03)}
-    @media(max-width:900px){.nav-links{display:none;position:absolute;top:86px;left:0;right:0;padding:16px 4%;flex-direction:column;align-items:stretch;gap:0;background:rgba(10,6,3,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav-links.open{display:flex}.nav-links>a{padding:14px 0}.nav-cta{justify-content:center}.socials{justify-content:center}.menu{display:block}.nav-inner>.socials{display:none}.hero{min-height:760px}.hero-proof{display:grid;grid-template-columns:1fr 1fr}.proof{margin:0;padding:15px;border-right:1px solid var(--line)}.grid{grid-template-columns:1fr 1fr}.care-layout,.about-grid,.visit-grid{grid-template-columns:1fr}.care-products{justify-content:flex-start}.store-image{min-height:300px}.contact-inner{display:grid;grid-template-columns:1fr}.contact-side{min-width:0}}
-    @media(max-width:560px){.container{width:90%}.nav{height:74px}.brand strong{font-size:17px}.hero{padding:120px 0 55px;min-height:730px}.hero h1{font-size:50px}.hero p{font-size:14px}.hero-proof{margin-top:35px;grid-template-columns:1fr}.proof{border-right:0;border-bottom:1px solid var(--line)}.proof:last-child{border-bottom:0}.collection,.care,.about,.visit,.contact{padding:78px 0}.section-heading{display:block}.section-heading p{margin-top:18px}.grid{grid-template-columns:1fr}.card{min-height:430px}.care-products{gap:5px}.care-product{width:48%}.care-product img{height:220px}.stat-grid{grid-template-columns:1fr}.visit-card{padding:28px}.contact h2{font-size:48px}.footer-inner{display:grid}.wa-float{width:54px;height:54px;right:15px;bottom:15px}}
-  </style>
-</head>
-<body>
-<div class="site">
-  <header class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#home" aria-label="The Prime Hide home"><strong>THE PRIME HIDE</strong><small>LEATHER ESSENTIALS</small></a>
-      <nav class="nav-links" id="navLinks">
-        <a href="#home">Home</a><a href="#collection">Collection</a><a href="#care">Shoe Care</a><a href="#about">About</a><a href="#visit">Visit Us</a>
-        <a class="nav-cta" href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20ask%20about%20your%20products." target="_blank" rel="noopener">WhatsApp ↗</a>
-      </nav>
-      <div class="socials">
-        <a href="https://www.tiktok.com/@theprimehide" target="_blank" rel="noopener" aria-label="TikTok">♪</a>
-        <a href="https://www.threads.com/@the_prime_hide" target="_blank" rel="noopener" aria-label="Threads">@</a>
-      </div>
-      <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
-    </div>
-  </header>
-
-  <main>
-    <section class="section hero" id="home">
-      <div class="container">
-        <div class="hero-copy">
-          <div class="eyebrow">EastGate Market · Shop G25 · Harare</div>
-          <h1>Everyday<br><em>leather.</em><br>Done right.</h1>
-          <p>Leather essentials and shoe-care products for work, everyday and outdoor footwear.</p>
-          <div class="hero-location">Find The Prime Hide at EastGate Market, Shop G25.</div>
-          <div class="actions"><a class="btn primary" href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20shop%20or%20ask%20about%20your%20products." target="_blank" rel="noopener">Shop on WhatsApp →</a><a class="btn" href="#collection">Explore Collection →</a></div>
-          <div class="hero-proof"><div class="proof"><b>Leather goods</b><span>Belts & wallets</span></div><div class="proof"><b>Shoe care</b><span>Impala care products</span></div><div class="proof"><b>Visit us</b><span>EastGate Market · G25</span></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section collection" id="collection">
-      <div class="container">
-        <div class="section-heading"><div><div class="eyebrow">Our collection</div><h2 class="serif">Leather<br><em>essentials.</em></h2></div><p>Explore selected leather accessories and shoe-care products from The Prime Hide. Ask on WhatsApp for current availability.</p></div>
-        <div class="grid">
-          <article class="card"><img src="assets/belt-brown.webp" alt="Brown leather belt" loading="lazy"><div class="card-content"><h3>Belts</h3><p>Leather belts in different finishes and buckle styles.</p><a href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20see%20the%20available%20belts." target="_blank" rel="noopener">Ask about belts →</a></div></article>
-          <article class="card"><img src="assets/wallet-black.webp" alt="Black leather wallet" loading="lazy"><div class="card-content"><h3>Wallets</h3><p>Compact leather wallets for everyday carry.</p><a href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20see%20the%20available%20wallets." target="_blank" rel="noopener">Ask about wallets →</a></div></article>
-          <article class="card"><img src="assets/polish-black.webp" alt="Impala black shoe polish" loading="lazy"><div class="card-content"><h3>Shoe Polish</h3><p>Impala shoe polish products for leather footwear.</p><a href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20ask%20about%20shoe%20polish." target="_blank" rel="noopener">Ask about shoe care →</a></div></article>
-          <article class="card"><img src="assets/leather-cleaner.webp" alt="Impala leather cleaner" loading="lazy"><div class="card-content"><h3>Leather Care</h3><p>Care products to help maintain your leather footwear.</p><a href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20ask%20about%20leather%20care%20products." target="_blank" rel="noopener">Ask about care →</a></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section care" id="care">
-      <div class="container care-layout">
-        <div><div class="eyebrow">Shoe care</div><h2>Keep good leather<br><em>looking good.</em></h2><p class="copy">Restore, protect, and maintain your favorite tan leather boots with Impala Tan Boot Polish. Designed to soften, nourish, and enhance the natural appearance of leather while helping preserve its rich tan color.</p><div class="care-list"><div><span class="tick">✓</span> Restores the look of tan leather boots</div><div><span class="tick">✓</span> Softens and nourishes leather</div><div><span class="tick">✓</span> Helps prevent dryness and cracking</div><div><span class="tick">✓</span> Quick and easy application</div></div><div class="actions"><a class="btn primary" href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20ask%20about%20Impala%20shoe-care%20products." target="_blank" rel="noopener">Ask about shoe care →</a></div></div>
-        <div class="care-products"><div class="care-product"><img src="assets/polish-black.webp" alt="Impala black shoe polish" loading="lazy"></div><div class="care-product"><img src="assets/polish-tan-boot.webp" alt="Impala tan boot polish" loading="lazy"></div></div>
-      </div>
-    </section>
-
-    <section class="section about" id="about">
-      <div class="container about-grid"><div><div class="eyebrow">About The Prime Hide</div><h2>Leather essentials<br><em>for everyday life.</em></h2><p class="copy">The Prime Hide is a Harare-based shopping & retail business at EastGate Market, Shop G25. The collection shown here highlights leather accessories and Impala shoe-care products available through the store.</p><div class="actions"><a class="btn" href="#visit">Find the store →</a></div></div><div class="stat-grid"><div class="stat"><strong>01</strong><span>EastGate Market<br>Shop G25</span></div><div class="stat"><strong>02</strong><span>Leather<br>Accessories</span></div><div class="stat"><strong>03</strong><span>Shoe Care<br>Essentials</span></div><div class="stat"><strong>04</strong><span>WhatsApp<br>Enquiries</span></div></div></div>
-    </section>
-
-    <section class="section visit" id="visit">
-      <div class="container visit-grid"><div class="visit-card"><div class="eyebrow">Visit the store</div><h2>EastGate Market<br><em>Shop G25.</em></h2><div class="detail"><div>⌖</div><div><b>Address</b><span>EastGate Market, Shop G25<br>Harare, Zimbabwe</span></div></div><div class="detail"><div>☎</div><div><b>WhatsApp</b><span>+263 77 687 4677</span></div></div><div class="actions"><a class="btn primary" href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27m%20at%20EastGate%20and%20would%20like%20to%20find%20Shop%20G25." target="_blank" rel="noopener">Message us on WhatsApp →</a></div></div><div class="store-image" aria-label="Leather store atmosphere"></div></div>
-    </section>
-
-    <section class="section contact" id="contact">
-      <div class="container contact-inner"><div><div class="eyebrow">Get in touch</div><h2>Have a question or need a product recommendation?</h2></div><div class="contact-side"><p>Message The Prime Hide for product enquiries, availability, or directions to Shop G25 at EastGate Market.</p><a class="btn primary" href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener">WhatsApp us now →</a><div class="socials"><a href="https://www.tiktok.com/@theprimehide" target="_blank" rel="noopener">♪</a><a href="https://www.threads.com/@the_prime_hide" target="_blank" rel="noopener">@</a></div></div></div>
-    </section>
-  </main>
-
-  <footer><div class="container footer-inner"><div class="footer-brand"><strong>THE PRIME HIDE</strong><span>LEATHER ESSENTIALS</span></div><div class="footer-note">EastGate Market · Shop G25 · Harare · +263 77 687 4677</div><div class="footer-note">© 2026 The Prime Hide</div></div></footer>
-  <a class="wa-float" href="https://wa.me/263776874677?text=Hello%20The%20Prime%20Hide%2C%20I%27d%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener" aria-label="WhatsApp The Prime Hide">◔</a>
-</div>
-<script>
-  const btn=document.getElementById('menuBtn');const nav=document.getElementById('navLinks');
-  btn.addEventListener('click',()=>nav.classList.toggle('open'));
-  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The Prime Hide — leather essentials and shoe-care products in Harare." />
+    <title>The Prime Hide | Leather Essentials</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

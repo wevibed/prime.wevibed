@@ -1,12 +1,15 @@
-# The Prime Hide — Cloudflare Ready
+# The Prime Hide — React/Vite
 
-Static, responsive website for The Prime Hide.
+Cloudflare Pages-ready React/Vite website for The Prime Hide.
 
-## Deploy
+## Local
+npm install
+npm run dev
 
-Upload this folder directly to Cloudflare Pages as a static site. No build command is required.
+## Production build
+npm run build
 
-## Contact
-
-WhatsApp: +263 77 687 4677
-Location: EastGate Market, Shop G25, Harare, Zimbabwe
+## Cloudflare Pages
+Build command: npm run build
+Output directory: dist
+Root directory: /

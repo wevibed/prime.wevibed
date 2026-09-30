@@ -16,68 +16,131 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Find ZIP
+      - name: Find Prime Hide ZIP
         id: zip
         shell: bash
         run: |
+          set -e
+
           ZIP_FILE=$(find . -maxdepth 1 -type f -iname "*.zip" | head -n 1)
 
           if [ -z "$ZIP_FILE" ]; then
-            echo "No ZIP found in repository root."
+            echo "ERROR: No ZIP file found in repository root."
             exit 1
           fi
 
+          echo "ZIP found: $ZIP_FILE"
           echo "ZIP_FILE=$ZIP_FILE" >> "$GITHUB_OUTPUT"
-          echo "Found: $ZIP_FILE"
 
-      - name: Extract project
+      - name: Extract ZIP
         shell: bash
         run: |
           set -e
 
           ZIP_FILE="${{ steps.zip.outputs.ZIP_FILE }}"
 
-          rm -rf _extracted
-          mkdir -p _extracted
+          rm -rf _prime_extract
+          mkdir -p _prime_extract
 
-          unzip -q "$ZIP_FILE" -d _extracted
+          echo "Extracting: $ZIP_FILE"
 
-          ROOTS=$(find _extracted -mindepth 1 -maxdepth 1 -type d | wc -l)
-          FILES=$(find _extracted -mindepth 1 -maxdepth 1 -type f | wc -l)
+          unzip -q "$ZIP_FILE" -d _prime_extract
 
-          if [ "$ROOTS" -eq 1 ] && [ "$FILES" -eq 0 ]; then
-            PROJECT_DIR=$(find _extracted -mindepth 1 -maxdepth 1 -type d | head -n 1)
+          echo "=== EXTRACTED CONTENT ==="
+          find _prime_extract -maxdepth 3 -type f | sort
+
+      - name: Detect project root
+        id: project
+        shell: bash
+        run: |
+          set -e
+
+          PROJECT_ROOT=""
+
+          if [ -f "_prime_extract/package.json" ]; then
+            PROJECT_ROOT="_prime_extract"
           else
-            PROJECT_DIR="_extracted"
+            FOUND=$(find _prime_extract -mindepth 1 -maxdepth 2 -type f -name "package.json" -print -quit)
+
+            if [ -n "$FOUND" ]; then
+              PROJECT_ROOT=$(dirname "$FOUND")
+            fi
           fi
+
+          if [ -z "$PROJECT_ROOT" ]; then
+            echo "ERROR: package.json was not found inside the ZIP."
+            exit 1
+          fi
+
+          echo "Project root detected: $PROJECT_ROOT"
+          echo "PROJECT_ROOT=$PROJECT_ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Replace repository with React project
+        shell: bash
+        run: |
+          set -e
+
+          PROJECT_ROOT="${{ steps.project.outputs.PROJECT_ROOT }}"
+          ZIP_FILE="${{ steps.zip.outputs.ZIP_FILE }}"
+
+          echo "Replacing repository contents..."
 
           find . -mindepth 1 -maxdepth 1 \
             ! -name ".git" \
             ! -name ".github" \
-            ! -name "_extracted" \
+            ! -name "_prime_extract" \
             ! -name "$(basename "$ZIP_FILE")" \
             -exec rm -rf {} +
 
-          cp -a "$PROJECT_DIR"/. .
+          cp -a "$PROJECT_ROOT"/. .
 
-          rm -rf _extracted
+          rm -rf _prime_extract
           rm -f "$ZIP_FILE"
 
-      - name: Show final structure
+      - name: Verify React project
         shell: bash
         run: |
+          set -e
+
           echo "=== ROOT ==="
           ls -la
 
+          echo ""
+          echo "=== REQUIRED FILES ==="
+
+          test -f package.json
+          test -f index.html
+          test -f vite.config.js
+          test -d src
+
+          echo "package.json ✓"
+          echo "index.html ✓"
+          echo "vite.config.js ✓"
+          echo "src/ ✓"
+
+          echo ""
           echo "=== SRC ==="
-          find src -maxdepth 2 -type f | sort
+          find src -maxdepth 3 -type f | sort
 
+          echo ""
           echo "=== PUBLIC ==="
-          find public -maxdepth 2 -type f | sort
+          find public -maxdepth 3 -type f | sort
 
-      - name: Commit extracted project
+      - name: Install dependencies
         shell: bash
         run: |
+          npm install
+
+      - name: Build React project
+        shell: bash
+        run: |
+          npm run build
+
+      - name: Commit project
+        shell: bash
+        run: |
+          set -e
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
